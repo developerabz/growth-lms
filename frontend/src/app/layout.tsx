@@ -18,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <Navbar />
-        <main className="min-h-screen bg-background">
-          {children}
-        </main>
+          <Navbar />
+          <main className="min-h-screen bg-background">
+            {children}
+          </main>
       </body>
     </html>
   );

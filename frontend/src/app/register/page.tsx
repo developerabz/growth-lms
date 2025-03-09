@@ -49,7 +49,6 @@ export default function RegisterPage() {
     handleSubmit,
     control,
     formState: { errors },
-    watch,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -62,7 +61,6 @@ export default function RegisterPage() {
     name: 'childEmails',
   });
 
-  const userTypes = watch('userTypes');
 
   const onSubmit = (data: RegisterFormData) => {
     console.log(data);
@@ -78,6 +76,12 @@ export default function RegisterPage() {
       return [...prev, type];
     });
   };
+
+  // Check if adult or parent is selected
+  const isAdultOrParentSelected = selectedTypes.includes('adultStudent') || selectedTypes.includes('parent');
+  
+  // Check if child is selected
+  const isChildSelected = selectedTypes.includes('childStudent');
 
   return (
     <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
@@ -114,21 +118,45 @@ export default function RegisterPage() {
               User Type
             </label>
             <div className="space-y-2">
-              {['adultStudent', 'childStudent', 'parent'].map((type) => (
-                <label key={type} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    {...register('userTypes')}
-                    value={type}
-                    onChange={() => handleUserTypeChange(type as UserType)}
-                    className="rounded text-black border-2 border-gray-300 text-primary-light focus:ring-primary-light"
-                  />
-                  <span className="ml-2 text-gray-700">
-                    {type === 'adultStudent' ? 'Adult Student' :
-                     type === 'childStudent' ? 'Child Student' : 'Parent'}
-                  </span>
-                </label>
-              ))}
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  {...register('userTypes')}
+                  value="adultStudent"
+                  onChange={() => handleUserTypeChange('adultStudent')}
+                  disabled={isChildSelected}
+                  className="rounded border-gray-300 text-primary-light focus:ring-primary-light disabled:opacity-50"
+                />
+                <span className="ml-2 text-gray-700">
+                  Adult Student
+                </span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  {...register('userTypes')}
+                  value="childStudent"
+                  onChange={() => handleUserTypeChange('childStudent')}
+                  disabled={isAdultOrParentSelected}
+                  className="rounded border-gray-300 text-primary-light focus:ring-primary-light disabled:opacity-50"
+                />
+                <span className="ml-2 text-gray-700">
+                  Child Student
+                </span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  {...register('userTypes')}
+                  value="parent"
+                  onChange={() => handleUserTypeChange('parent')}
+                  disabled={isChildSelected}
+                  className="rounded border-gray-300 text-primary-light focus:ring-primary-light disabled:opacity-50"
+                />
+                <span className="ml-2 text-gray-700">
+                  Parent
+                </span>
+              </label>
             </div>
             {errors.userTypes && (
               <p className="mt-1 text-sm text-red-600">{errors.userTypes.message}</p>
@@ -228,7 +256,7 @@ export default function RegisterPage() {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-light hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
+              className="w-full flex justify-center py-2 px-4 border-2 border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-light hover:bg-white hover:text-primary-light hover:border-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
             >
               Create Account
             </button>
