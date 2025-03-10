@@ -21,11 +21,11 @@ export default function Home() {
               Get Started
             </Link>
             <Link
-              href="/learn-more"
+              href="/dashboard"
               className="inline-block bg-white text-primary hover:text-white border-2 border-primary-light px-8 py-3 rounded font-medium hover:bg-primary-light hover:text-primary-light transition-colors"
-              aria-label="Learn more about Growth LMS features"
+              aria-label="Try the Growth LMS demo"
             >
-              Learn More
+              Demo
             </Link>
           </div>
         </div>

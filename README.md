@@ -1,5 +1,7 @@
 # Growth LMS
 
+**In Progress**
+
 A modern Learning Management System built with .NET 8 and Next.js 14.
 
 ## Project Structure
