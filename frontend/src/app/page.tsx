@@ -113,7 +113,7 @@ export default function Home() {
                 For Parents
               </h3>
               <p className="text-gray-600">
-                Stay involved in your child's education with real-time progress updates, direct communication with teachers, and activity monitoring.
+                Stay involved in your child&apos;s education with real-time progress updates, direct communication with teachers, and activity monitoring.
               </p>
             </div>
           </div>
