@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm, useFieldArray, FieldValues } from 'react-hook-form';
+import { useForm, useFieldArray} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { XCircle } from 'lucide-react';
@@ -199,7 +199,7 @@ export default function RegisterPage() {
           {selectedTypes.includes('childStudent') && (
             <div>
               <label htmlFor="parentEmail" className="block text-sm font-medium text-gray-700">
-                Parent's Email Address
+                Parent&apos;s Email Address
               </label>
               <input
                 type="email"
